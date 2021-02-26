@@ -29,9 +29,7 @@ trait TableQuery extends Query {
 
 trait Where {
   val where: Iterable[_ <: Op]
-  lazy val whereString: String =
-    if (where.isEmpty) ""
-    else where.map(_.toString).mkString("WHERE 1 AND ", " AND ", "")
+  lazy val whereString: String = if (where.isEmpty) "" else where.map(_.toString).mkString("WHERE 1 AND ", " AND ", "")
 }
 
 class TableListQ extends Query {
@@ -145,8 +143,7 @@ object RequestParser {
         case s: Order => 2
         case _ => 3
       }
-      groupedByPriority.keySet.foldLeft(List[Op]())((acc, v) =>
-        acc ++ groupedByPriority(v))
+      groupedByPriority.keySet.foldLeft(List[Op]())((acc, v) => acc ++ groupedByPriority(v))
     }
 
     req.method match {

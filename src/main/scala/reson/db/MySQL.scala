@@ -13,8 +13,7 @@ import org.json4s._
 
 object MySQL extends MySQL2Json {
 
-  val dbConf: ConnectionConfig =
-    ConnectionConfig(sys.props.get("db_uri").getOrElse(sys.env("db_uri")))
+  val dbConf: ConnectionConfig = ConnectionConfig(sys.props.get("db_uri").getOrElse(sys.env("db_uri")))
 
   lazy val db: Client with Transactions = Mysql.client
     .withCredentials(dbConf.user, dbConf.pass.orNull)
