@@ -59,6 +59,6 @@ object Server extends App {
   lazy val svc = exceptionHandlerFilter andThen new Service[Request, Response] {
     def apply(req: Request): Future[Response] = route(req)
   }
-  val q = Await.ready(Http.serve(":5000", svc))
+  val q = Await.ready(Http.serve("localhost:5000", svc))
   println("listening: " + q)
 }
